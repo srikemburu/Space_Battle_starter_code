@@ -56,25 +56,62 @@ class Enemy extends Spaceship{
 }
 
 function Spacebattle(myShip, alienArr) {
-    for (let i = 0; i < alienArr.length; i++){        
-        if (myShip.alive)
-        {
-            console.log("\nspacebattle " + (i +1))
-            while (alienArr[i].alive && myShip.alive)
-         //   while (alienArr[i].alive)
-            {
-                myShip.attack(alienArr[i])
-                if (alienArr[i].alive == true)
+    alert('Welcome to Space Battle')
+    let playerStats = document.querySelector("#PlayerInfo")
+    let enemyStats = document.querySelector("#EnemyInfo")
+
+    for (let i = 0; i < alienArr.length; i++){   
+        var userInput = prompt("Would you like to Attack or Retreat?  Y or N", "Y")
+        if (userInput != null) {
+
+           if (userInput == "Y" || userInput == "y"){
+                if (myShip.alive)
                 {
-                    alienArr[i].attack(myShip)
-                    if (!myShip.alive) {break;}
+                    console.log("\nspacebattle " + (i +1))
+                    while (alienArr[i].alive && myShip.alive)
+                    //   while (alienArr[i].alive)
+                    {
+                        myShip.attack(alienArr[i])
+                        if (alienArr[i].alive)
+                        {
+                            alienArr[i].attack(myShip)
+                            // Update Stats in HTML
+                            playerStats.innerHTML = `Hull : ${myShip.hull} <br> FirePower : ${myShip.firePower} <br> Accuracy : ${myShip.accuracy}`
+                            enemyStats.innerHTML = `Hull : ${alienArr[i].hull} <br> FirePower : ${alienArr[i].firePower} <br> Accuracy : ${alienArr[i].accuracy}`
+
+                            if (!myShip.alive) {break;}
+                        }
+                        else {
+                            playerStats.innerHTML = `Hull : ${myShip.hull} <br> FirePower : ${myShip.firePower} <br> Accuracy : ${myShip.accuracy}`
+                            enemyStats.innerHTML = `Hull : ${alienArr[i].hull} <br> FirePower : ${alienArr[i].firePower} <br> Accuracy : ${alienArr[i].accuracy}`
+                        }
+
+                    }  // End of While Loop
+                       //else {break} 
+
+                }      // if myship alive 
+
+                if (!myShip.alive) {
+                    alert('USS Scwarzenegger was defeated by an Alien Ship')
+                    break;
                 }
+                else {
+                    if (i == alienArr.length -1) {
+                        alert ('USS Scwarzenegger DESTROYED all Alien Ships')
+                    }
+                }
+
+            }     //user input = yes
+
+            else {
+                alert('The user has chosen to Retreat')
+                 break;
             }
-            //else {break} 
-        }
-        if (!myShip.alive) {break;}
-    }
-}
+
+        }         // user input NOT null        
+
+    }   // End of For Loop
+}       // End Function Space Battle
 
 
 let hero = new Schwarzenegger(20,5,.7)
@@ -101,4 +138,3 @@ makeFleet(6)
 console.log("Alien Fleet\n")
 console.log(alienFleet)
 Spacebattle(hero, alienFleet)
-prompt("Example Test", "Some Default Value")
