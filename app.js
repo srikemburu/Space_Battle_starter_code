@@ -87,7 +87,6 @@ function Spacebattle(myShip, alienArr) {
                         }
 
                     }  // End of While Loop
-                       //else {break} 
 
                 }      // if myship alive 
 
