@@ -81,20 +81,20 @@ function Spacebattle(myShip, alienArr) {
 
                             if (!myShip.alive) {break;}
                         }
-                        else {
+                        else {     // Update Stats in HTML for the last Alien Ship destroyed
                             playerStats.innerHTML = `Hull : ${myShip.hull} <br> FirePower : ${myShip.firePower} <br> Accuracy : ${myShip.accuracy}`
                             enemyStats.innerHTML = `Hull : ${alienArr[i].hull} <br> FirePower : ${alienArr[i].firePower} <br> Accuracy : ${alienArr[i].accuracy}`
                         }
 
                     }  // End of While Loop
 
-                }      // if myship alive 
+                }      // End - if myship alive 
 
                 if (!myShip.alive) {
                     alert('USS Scwarzenegger was defeated by an Alien Ship')
                     break;
                 }
-                else {
+                else {     // Main ship destroyed the last Alien ship
                     if (i == alienArr.length -1) {
                         alert ('USS Scwarzenegger DESTROYED all Alien Ships')
                     }
@@ -110,7 +110,7 @@ function Spacebattle(myShip, alienArr) {
         }         // user input NOT null        
 
     }   // End of For Loop
-}       // End Function Space Battle
+}       // End Function SpaceBattle
 
 
 let hero = new Schwarzenegger(20,5,.7)
